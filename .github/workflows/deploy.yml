@@ -20,26 +20,26 @@ jobs:
           submodules: true
           fetch-depth: 0
       
-      # Using 3.12 for better binary compatibility with libsass
       - name: Set up Python 🐍
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
           cache: 'pip'
       
-      - name: Cache Dependencies 📦
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-      
       - name: Install Dependencies 🔧
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       
+      - name: Fetch @barrys27/ui 📥
+        run: |
+          mkdir -p static/css
+          curl -sLo static/css/barrys27-ui.scss https://unpkg.com/@barrys27/ui@latest/src/scss/main.scss
+
+      - name: Compile SCSS 🎨
+        run: |
+          python scss.py
+
       - name: Build Static Site 🏗️
         run: |
           python freeze.py
