@@ -1,5 +1,5 @@
 {% macro badge(text, icon=None, color='blue') %}
-    <span class="badge theme-{{ color }}">
+    <span class="badge is-{{ color }}">
         {% if icon %}
             <i class="{{ icon if ' ' in icon or 'fa-' in icon else 'fa-solid fa-' + icon }}"></i>
         {% endif %}
@@ -7,10 +7,22 @@
     </span>
 {% endmacro %}
 
+{% macro section(id, subtitle, title, type='card') %}
+    <section id="{{ id }}" class="fade-in" aria-labelledby="{{ id }}-heading">
+        <hgroup class="header">
+            <p>{{ subtitle }}</p>
+            <h2>{{ title }}</h2>
+        </hgroup>
+        <div class="{{ type }}">
+            {{ caller() }}
+        </div>
+    </section>
+{% endmacro %}
+
 {% macro icard(title, description, link, tags=none, image=none, color='blue') %}
-    <a href="{{ link }}" class="card project" target="_blank" rel="noopener noreferrer">
+    <a href="{{ link }}" class="card project is-interactive" target="_blank" rel="noopener noreferrer">
         {% if image %}
-            <img src="{{ image }}" alt="{{ title }}">
+            <img src="{{ image }}" alt="{{ title }}" loading="lazy" decoding="async" />
         {% endif %}
         
         <div>
@@ -22,7 +34,7 @@
             <p>{{ description }}</p>
             
             {% if tags %}
-                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <div class="tag">
                     {% for tag in tags %}
                         {{ badge(tag, color=color) }}
                     {% endfor %}
