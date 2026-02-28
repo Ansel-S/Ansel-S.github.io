@@ -7,18 +7,6 @@
     </span>
 {% endmacro %}
 
-{% macro section(id, subtitle, title, type='card') %}
-    <section id="{{ id }}" class="fade-in" aria-labelledby="{{ id }}-heading">
-        <hgroup class="header">
-            <p>{{ subtitle }}</p>
-            <h2>{{ title }}</h2>
-        </hgroup>
-        <div class="{{ type }}">
-            {{ caller() }}
-        </div>
-    </section>
-{% endmacro %}
-
 {% macro icard(title, description, link, tags=none, image=none, color='blue') %}
     <a href="{{ link }}" class="card project is-interactive" target="_blank" rel="noopener noreferrer">
         {% if image %}
@@ -42,4 +30,16 @@
             {% endif %}
         </div>
     </a>
+{% endmacro %}
+
+{% macro section(id, subtitle, title, type='card') %}
+    <section id="{{ id }}" class="fade-in" aria-labelledby="{{ id }}-heading">
+        <hgroup class="header">
+            <p>{{ subtitle }}</p>
+            <h2>{{ title }}</h2>
+        </hgroup>
+        <div class="{{ type }}">
+            {{ caller() }}
+        </div>
+    </section>
 {% endmacro %}
