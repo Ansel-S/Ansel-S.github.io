@@ -1,20 +1,32 @@
-import requests
+import sass
 import os
+import sys
 
-FILES = ['_core.scss']
-BASE_URL = "https://raw.githubusercontent.com/BarryS27/Common-Elements/main/scss/"
-TARGET_DIR = "static/css/common/scss"
+SOURCE_FILE = "static/css/styles.scss" 
+TARGET_FILE = "static/css/styles.css"
 
-def fetch():
-    if not os.path.exists(TARGET_DIR):
-        os.makedirs(TARGET_DIR)
+def compile_scss():
+    target_dir = os.path.dirname(TARGET_FILE)
+    if not os.path.exists(target_dir):
+        os.makedirs(target_dir)
     
-    for file in FILES:
-        print(f"Fetching {file}...")
-        r = requests.get(BASE_URL + file)
-        with open(os.path.join(TARGET_DIR, file), 'wb') as f:
-            f.write(r.content)
-    print("✅ All styles synced. No Git bloat.")
+    print(f"🎨 Compiling {SOURCE_FILE} to {TARGET_FILE}...")
+
+    try:
+        css_content = sass.compile(
+            filename=SOURCE_FILE,
+            output_style='compressed',
+            include_paths=['static/css']
+        )
+
+        with open(TARGET_FILE, 'w', encoding='utf-8') as f:
+            f.write(css_content)
+        
+        print("✅ SCSS compilation complete.")
+
+    except Exception as e:
+        print(f"❌ Error: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
-    fetch()
+    compile_scss()
