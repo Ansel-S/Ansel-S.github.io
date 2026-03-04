@@ -33,8 +33,6 @@ freezer = Freezer(app)
 REQUIRED_BUILD_ARTIFACTS = [
     "index.html",
     os.path.join("static", "css", "styles.css"),
-    os.path.join("static", "js", "script.js"),
-    os.path.join("static", "js", "easter-eggs.js"),
     os.path.join("static", "images", "favicon-96x96.png"),
     os.path.join("static", "images", "favicon.svg"),
     os.path.join("static", "images", "favicon.ico"),

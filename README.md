@@ -28,6 +28,7 @@ The website implements a **Glassmorphism** visual language, drawing inspiration 
 * **Styling**: Dart Sass Standalone + Lightning CSS binaries for modern SCSS support, autoprefixing, and minified output without Node runtime dependencies.
 * **Deployment**: Flask-Freeze for generating the static site architecture for GitHub Pages.
 * **Optimization**: GPU-accelerated animations using `will-change` and hardware-layering properties for smooth 120Hz performance.
+* **Zero-JS motion**: smooth scrolling and section reveals are handled by CSS only.
 
 ---
 

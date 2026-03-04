@@ -15,6 +15,7 @@ class WorkflowCITests(unittest.TestCase):
         self.assertIn('vendor/ui', workflow)
         self.assertNotIn('setup-node', workflow)
         self.assertNotIn('npm install', workflow)
+        self.assertNotIn('build/static/js/script.js', workflow)
 
 
 if __name__ == '__main__':

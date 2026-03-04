@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-from freeze import app, optimize_images
+from freeze import REQUIRED_BUILD_ARTIFACTS, app, optimize_images
 
 
 class FreezeConfigTests(unittest.TestCase):
@@ -11,6 +11,11 @@ class FreezeConfigTests(unittest.TestCase):
         self.assertEqual(app.config['FREEZER_DESTINATION'], 'build')
         self.assertIn('FREEZER_BASE_URL', app.config)
         self.assertTrue(app.config['FREEZER_BASE_URL'].startswith('http'))
+
+
+    def test_required_artifacts_do_not_include_nonessential_js(self) -> None:
+        self.assertNotIn('static/js/script.js', REQUIRED_BUILD_ARTIFACTS)
+        self.assertNotIn('static/js/easter-eggs.js', REQUIRED_BUILD_ARTIFACTS)
 
     @patch('freeze.PILLOW_AVAILABLE', True)
     @patch('freeze.Image')

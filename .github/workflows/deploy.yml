@@ -94,8 +94,6 @@ jobs:
           required_files=(
             "build/index.html"
             "build/static/css/styles.css"
-            "build/static/js/script.js"
-            "build/static/js/easter-eggs.js"
             "build/static/images/favicon-96x96.png"
             "build/static/images/favicon.svg"
             "build/static/images/favicon.ico"
