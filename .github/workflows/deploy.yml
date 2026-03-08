@@ -19,19 +19,23 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Sync UI main.scss 📦
+      - name: Sync UI Components 📦
         run: |
           set -euo pipefail
-          curl -L https://unpkg.com/@barrys27/ui/src/scss/main.scss -o static/css/main.scss || {
-            echo "❌ Failed to download main.scss from @barrys27/ui"
-            exit 1
-          }
+          mkdir -p static/css/@barrys27/ui
+          BASE_URL="https://unpkg.com/@barrys27/ui/src/scss"
+          for file in main.scss _base.scss _variables.scss _mixins.scss _components.scss; do
+            curl -L "$BASE_URL/$file" -o "static/css/@barrys27/ui/$file" || {
+              echo "❌ Failed to download $file from @barrys27/ui"
+              exit 1
+            }
+          done
 
       - name: Compile CSS 🎨
         run: |
           set -euo pipefail
           sudo snap install dart-sass
-          dart-sass static/css/styles.scss static/css/styles.css --no-source-map || {
+          dart-sass static/css/styles.scss static/css/styles.css --load-path=static/css --no-source-map || {
             echo "❌ SCSS compilation failed"
             exit 1
           }
@@ -52,7 +56,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'chore: sync @barrys27/ui main.scss and compiled styles.css'
-          file_pattern: static/css/main.scss static/css/styles.css
+          file_pattern: static/css/@barrys27/ui/* static/css/styles.css
 
       - name: Freeze Static Site 🧊
         run: |
