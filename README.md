@@ -1,12 +1,12 @@
-# Bairu (Barry) Song | Personal Portfolio
+# Bairu (Ansel) Song | Personal Portfolio
 
-![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fbarrys27.github.io)
-![License](https://img.shields.io/github/license/barrys27/barrys27.github.io)
-![Top Language](https://img.shields.io/github/languages/top/barrys27/barrys27.github.io)
+![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fasong56.github.io)
+![License](https://img.shields.io/github/license/asong56/asong56.github.io)
+![Top Language](https://img.shields.io/github/languages/top/asong56/asong56.github.io)
 
 This repository contains the source code for my personal portfolio website. I am a student at **Lexington High School** with a focus on data-driven decision making and modern web development.
 
-🔗 **Live Site:** [barrys27.github.io](https://barrys27.github.io/)
+🔗 [**Live Site**](https://asong56.github.io/)
 
 ---
 
